@@ -5,14 +5,15 @@ import { useTheme } from "next-themes"
 import { ProfessionalCard } from "@/components/ProfessionalCard"
 import { EventCard } from "@/components/EventCard"
 import { Navbar } from '@/components/NavBar'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { Switch } from "@/components/ui/switch"
-import { Search, Sun, Moon } from 'lucide-react'
+import { Search, Users, Calendar, Briefcase } from 'lucide-react'
 import { useProfessionals } from "@/hooks/useProfessionals"
 import { useEvents } from "@/hooks/useEvents"
 import Link from 'next/link'
 import { Footer } from '@/components/Footer'
+
 
 export default function Home() {
   const [location, setLocation] = useState("Nueva York")
@@ -42,6 +43,59 @@ export default function Home() {
                   </Button>
                 </form>
               </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="w-full py-12 md:py-24 lg:py-32">
+          <div className="container px-4 md:px-6">
+            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-center mb-8">
+              Explore NetworkPro
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <Card>
+                <CardHeader>
+                  <CardTitle>Find Professionals</CardTitle>
+                  <CardDescription>Connect with experts in your field</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <Users className="h-12 w-12 mb-4 text-blue-500" />
+                  <p className="text-sm text-gray-500 dark:text-gray-400">
+                    Discover and connect with professionals from various industries worldwide.
+                  </p>
+                  <Link href="/professionals" className="mt-4 inline-block">
+                    <Button>Explore Professionals</Button>
+                  </Link>
+                </CardContent>
+              </Card>
+              <Card>
+                <CardHeader>
+                  <CardTitle>Discover Events</CardTitle>
+                  <CardDescription>Attend networking opportunities</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <Calendar className="h-12 w-12 mb-4 text-green-500" />
+                  <p className="text-sm text-gray-500 dark:text-gray-400">
+                    Find and participate in events to expand your network and knowledge.
+                  </p>
+                  <Link href="/events" className="mt-4 inline-block">
+                    <Button variant="outline">Browse Events</Button>
+                  </Link>
+                </CardContent>
+              </Card>
+              <Card>
+                <CardHeader>
+                  <CardTitle>Job Opportunities</CardTitle>
+                  <CardDescription>Find your next career move</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <Briefcase className="h-12 w-12 mb-4 text-purple-500" />
+                  <p className="text-sm text-gray-500 dark:text-gray-400">
+                    Explore job listings and career opportunities in your industry.
+                  </p>
+                  <Button variant="outline" className="mt-4">Coming Soon</Button>
+                </CardContent>
+              </Card>
             </div>
           </div>
         </section>
