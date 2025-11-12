@@ -23,7 +23,7 @@ export default function TermsPage() {
             </CardHeader>
             <CardContent className="prose dark:prose-invert max-w-none">
               <p>
-                By accessing and using NetworkPro ("the Service"), you accept and agree to be bound by the
+                By accessing and using NetworkPro (&quot;the Service&quot;), you accept and agree to be bound by the
                 terms and provision of this agreement. If you do not agree to these terms, please do not use
                 the Service.
               </p>
@@ -44,7 +44,7 @@ export default function TermsPage() {
                 <li>Use the materials for any commercial purpose</li>
                 <li>Attempt to decompile or reverse engineer any software contained on the Service</li>
                 <li>Remove any copyright or other proprietary notations from the materials</li>
-                <li>Transfer the materials to another person or "mirror" the materials on any other server</li>
+                <li>Transfer the materials to another person or &quot;mirror&quot; the materials on any other server</li>
               </ul>
             </CardContent>
           </Card>

@@ -36,7 +36,7 @@ export default function AboutPage() {
               <p className="text-lg text-muted-foreground">
                 NetworkPro is dedicated to empowering professionals around the world by providing a platform
                 to connect, collaborate, and grow their careers. We believe that meaningful professional
-                relationships are the foundation of success, and we're here to make those connections easier
+                relationships are the foundation of success, and we&apos;re here to make those connections easier
                 than ever.
               </p>
             </div>
@@ -128,13 +128,13 @@ export default function AboutPage() {
                 </p>
                 <p>
                   Our platform is built on the belief that everyone has something valuable to offer and
-                  something to learn from others. Whether you're a seasoned executive, an emerging professional,
+                  something to learn from others. Whether you&apos;re a seasoned executive, an emerging professional,
                   or somewhere in between, NetworkPro provides the tools and opportunities you need to succeed.
                 </p>
                 <p>
                   Today, NetworkPro serves thousands of professionals across the globe, facilitating connections
                   that lead to collaborations, career opportunities, and lasting professional relationships.
-                  We're proud to be part of your professional journey.
+                  We&apos;re proud to be part of your professional journey.
                 </p>
               </div>
             </div>
@@ -158,13 +158,13 @@ export default function AboutPage() {
                 <div>
                   <h3 className="text-xl font-semibold mb-2">Growth</h3>
                   <p className="text-muted-foreground">
-                    We're committed to continuous improvement, both for our platform and for our community.
+                    We&apos;re committed to continuous improvement, both for our platform and for our community.
                   </p>
                 </div>
                 <div>
                   <h3 className="text-xl font-semibold mb-2">Community</h3>
                   <p className="text-muted-foreground">
-                    Together, we're stronger. We foster a supportive community where everyone can thrive.
+                    Together, we&apos;re stronger. We foster a supportive community where everyone can thrive.
                   </p>
                 </div>
               </div>

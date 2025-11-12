@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { useParams, useRouter } from 'next/navigation'
+import Image from 'next/image'
 import { Navbar } from '@/components/NavBar'
 import { Footer } from '@/components/Footer'
 import { Button } from '@/components/ui/button'
@@ -131,9 +132,11 @@ export default function EventDetailPage() {
               <CardContent className="pt-6">
                 {event.image && (
                   <div className="mb-6 rounded-lg overflow-hidden">
-                    <img
+                    <Image
                       src={event.image}
                       alt={event.name}
+                      width={400}
+                      height={192}
                       className="w-full h-48 object-cover"
                     />
                   </div>
@@ -142,7 +145,7 @@ export default function EventDetailPage() {
                 {isRegistered && (
                   <Badge className="w-full mb-4 justify-center py-2 bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300">
                     <CheckCircle className="mr-2 h-4 w-4" />
-                    You're Registered
+                    You&apos;re Registered
                   </Badge>
                 )}
 

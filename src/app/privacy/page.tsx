@@ -23,7 +23,7 @@ export default function PrivacyPage() {
             </CardHeader>
             <CardContent className="prose dark:prose-invert max-w-none">
               <p>
-                NetworkPro ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy
+                NetworkPro (&quot;we,&quot; &quot;our,&quot; or &quot;us&quot;) is committed to protecting your privacy. This Privacy Policy
                 explains how we collect, use, disclose, and safeguard your information when you use our
                 platform. Please read this privacy policy carefully.
               </p>
@@ -170,7 +170,7 @@ export default function PrivacyPage() {
 
           <Card className="mb-6">
             <CardHeader>
-              <CardTitle>Children's Privacy</CardTitle>
+              <CardTitle>Children&apos;s Privacy</CardTitle>
             </CardHeader>
             <CardContent className="prose dark:prose-invert max-w-none">
               <p>
@@ -201,7 +201,7 @@ export default function PrivacyPage() {
             <CardContent className="prose dark:prose-invert max-w-none">
               <p>
                 We may update our Privacy Policy from time to time. We will notify you of any changes by
-                posting the new Privacy Policy on this page and updating the "Last updated" date. You are
+                posting the new Privacy Policy on this page and updating the &quot;Last updated&quot; date. You are
                 advised to review this Privacy Policy periodically for any changes.
               </p>
             </CardContent>
