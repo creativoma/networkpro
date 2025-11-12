@@ -16,11 +16,14 @@ export function Footer() {
             © 2024 NetworkPro. All rights reserved.
           </p>
           <nav className="flex gap-4 sm:gap-6">
-            <Link className="text-sm font-medium hover:underline" href="#">
+            <Link className="text-sm font-medium hover:underline" href="/terms">
               Terms of Service
             </Link>
-            <Link className="text-sm font-medium hover:underline" href="#">
+            <Link className="text-sm font-medium hover:underline" href="/privacy">
               Privacy Policy
+            </Link>
+            <Link className="text-sm font-medium hover:underline" href="/about">
+              About
             </Link>
           </nav>
           <div className="flex items-center space-x-2">
