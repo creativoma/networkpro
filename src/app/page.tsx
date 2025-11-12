@@ -1,7 +1,6 @@
 'use client'
 
 import { useState } from 'react'
-import { useTheme } from "next-themes"
 import { ProfessionalCard } from "@/components/ProfessionalCard"
 import { EventCard } from "@/components/EventCard"
 import { Navbar } from '@/components/NavBar'
@@ -17,7 +16,6 @@ import { Footer } from '@/components/Footer'
 
 export default function Home() {
   const [location, setLocation] = useState("San Francisco")
-  const { theme, setTheme } = useTheme()
   const { professionals, loading: loadingProfessionals, error: professionalError } = useProfessionals()
   const { events, loading: loadingEvents, error: eventError } = useEvents()
 
@@ -25,13 +23,13 @@ export default function Home() {
     <div className="flex flex-col min-h-screen">
       <Navbar location={location} setLocation={setLocation} />
       <main className="flex-grow">
-        <section className="w-full py-12 md:py-24 lg:py-32 xl:py-48 bg-gradient-to-r from-blue-500 to-purple-600">
+        <section className="w-full py-12 md:py-24 lg:py-32 xl:py-48 bg-gradient-brand">
           <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center space-y-4 text-center">
-              <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none text-white">
+              <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none text-primary-foreground">
                 Welcome to NetworkPro
               </h1>
-              <p className="mx-auto max-w-[700px] text-gray-200 md:text-xl">
+              <p className="mx-auto max-w-[700px] text-primary-foreground/90 md:text-xl">
                 Connect with professionals around the world. Expand your network, discover opportunities, and grow your career.
               </p>
               <div className="w-full max-w-sm space-y-2">
@@ -59,8 +57,8 @@ export default function Home() {
                   <CardDescription>Connect with experts in your field</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <Users className="h-12 w-12 mb-4 text-blue-500" />
-                  <p className="text-sm text-gray-500 dark:text-gray-400">
+                  <Users className="h-12 w-12 mb-4 text-primary" />
+                  <p className="text-sm text-muted-foreground">
                     Discover and connect with professionals from various industries worldwide.
                   </p>
                   <Link href="/professionals" className="mt-4 inline-block">
@@ -74,8 +72,8 @@ export default function Home() {
                   <CardDescription>Attend networking opportunities</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <Calendar className="h-12 w-12 mb-4 text-green-500" />
-                  <p className="text-sm text-gray-500 dark:text-gray-400">
+                  <Calendar className="h-12 w-12 mb-4 text-primary" />
+                  <p className="text-sm text-muted-foreground">
                     Find and participate in events to expand your network and knowledge.
                   </p>
                   <Link href="/events" className="mt-4 inline-block">
@@ -89,8 +87,8 @@ export default function Home() {
                   <CardDescription>Find your next career move</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <Briefcase className="h-12 w-12 mb-4 text-purple-500" />
-                  <p className="text-sm text-gray-500 dark:text-gray-400">
+                  <Briefcase className="h-12 w-12 mb-4 text-primary" />
+                  <p className="text-sm text-muted-foreground">
                     Explore job listings and career opportunities in your industry.
                   </p>
                   <Link href="/jobs" className="mt-4 inline-block">
@@ -102,7 +100,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="w-full py-12 md:py-24 lg:py-32 bg-gray-100 dark:bg-gray-800">
+        <section className="w-full py-12 md:py-24 lg:py-32 bg-muted">
           <div className="container px-4 md:px-6">
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-center mb-8">
               Featured Professionals

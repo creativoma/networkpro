@@ -13,7 +13,7 @@ import { Search, Calendar } from 'lucide-react'
 
 export default function EventsPage() {
   const { events, loading, error } = useEvents()
-  const [location, setLocation] = useState("Nueva York")
+  const [location, setLocation] = useState("New York")
   const [searchTerm, setSearchTerm] = useState("")
   const [locationFilter, setLocationFilter] = useState("all")
 

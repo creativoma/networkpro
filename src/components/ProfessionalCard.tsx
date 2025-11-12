@@ -40,7 +40,7 @@ export function ProfessionalCard({ professional }: ProfessionalCardProps) {
             ))}
           </div>
         )}
-        {/* Añade comprobaciones similares para otras propiedades opcionales */}
+        {/* Add similar checks for other optional properties */}
       </CardContent>
       <CardFooter className="flex justify-between">
         <Button variant="ghost" size="icon">

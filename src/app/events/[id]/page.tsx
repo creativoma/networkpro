@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 import { useParams, useRouter } from 'next/navigation'
 import Image from 'next/image'
+import { toast } from 'sonner'
 import { Navbar } from '@/components/NavBar'
 import { Footer } from '@/components/Footer'
 import { Button } from '@/components/ui/button'
@@ -13,6 +14,8 @@ import { Calendar, MapPin, Users, ArrowLeft, CheckCircle, XCircle } from 'lucide
 import { Event } from '@/types'
 import { getEventById, registerForEvent, cancelEventRegistration, isUserRegisteredForEvent } from '@/lib/api'
 import { useAuth } from '@/hooks/useAuth'
+import { copyToClipboard, getTwitterShareUrl, getLinkedInShareUrl } from '@/lib/share-utils'
+import { formatDateTime } from '@/lib/date-utils'
 
 export default function EventDetailPage() {
   const params = useParams()
@@ -52,31 +55,43 @@ export default function EventDetailPage() {
         if (isRegistered) {
           await cancelEventRegistration(event.id, user.id)
           setIsRegistered(false)
-          alert('Registration cancelled successfully!')
+          toast.success('Registration cancelled successfully!')
         } else {
           await registerForEvent(event.id, user.id)
           setIsRegistered(true)
-          alert('Registered successfully!')
+          toast.success('Registered successfully!')
         }
       }
     } catch (error) {
       console.error('Error toggling registration:', error)
-      alert('Failed to update registration')
+      toast.error('Failed to update registration')
     } finally {
       setActionLoading(false)
     }
   }
 
-  const formatDate = (dateString: string) => {
-    const date = new Date(dateString)
-    return new Intl.DateTimeFormat('en-US', {
-      weekday: 'long',
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit'
-    }).format(date)
+  const handleShareTwitter = () => {
+    if (!event) return
+    const url = getTwitterShareUrl(
+      `Check out this event: ${event.name}`,
+      window.location.href
+    )
+    window.open(url, '_blank', 'noopener,noreferrer')
+  }
+
+  const handleShareLinkedIn = () => {
+    if (!event) return
+    const url = getLinkedInShareUrl(window.location.href)
+    window.open(url, '_blank', 'noopener,noreferrer')
+  }
+
+  const handleCopyLink = async () => {
+    const success = await copyToClipboard(window.location.href)
+    if (success) {
+      toast.success('Link copied to clipboard!')
+    } else {
+      toast.error('Failed to copy link')
+    }
   }
 
   if (loading) {
@@ -178,7 +193,7 @@ export default function EventDetailPage() {
                     <Calendar className="mr-3 h-5 w-5 text-muted-foreground mt-0.5" />
                     <div>
                       <p className="font-medium text-sm">Date & Time</p>
-                      <p className="text-sm text-muted-foreground">{formatDate(event.date)}</p>
+                      <p className="text-sm text-muted-foreground">{formatDateTime(event.date)}</p>
                     </div>
                   </div>
 
@@ -245,9 +260,9 @@ export default function EventDetailPage() {
                 <div>
                   <h4 className="font-semibold mb-3">Share This Event</h4>
                   <div className="flex gap-2">
-                    <Button variant="outline" size="sm">Share on Twitter</Button>
-                    <Button variant="outline" size="sm">Share on LinkedIn</Button>
-                    <Button variant="outline" size="sm">Copy Link</Button>
+                    <Button variant="outline" size="sm" onClick={handleShareTwitter}>Share on Twitter</Button>
+                    <Button variant="outline" size="sm" onClick={handleShareLinkedIn}>Share on LinkedIn</Button>
+                    <Button variant="outline" size="sm" onClick={handleCopyLink}>Copy Link</Button>
                   </div>
                 </div>
               </CardContent>

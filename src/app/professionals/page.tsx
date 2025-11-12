@@ -14,7 +14,7 @@ import { Search, Filter } from 'lucide-react'
 
 export default function ProfessionalsPage() {
   const { professionals, loading, error } = useProfessionals()
-  const [location, setLocation] = useState("Nueva York")
+  const [location, setLocation] = useState("New York")
   const [searchTerm, setSearchTerm] = useState("")
   const [industryFilter, setIndustryFilter] = useState("all")
   const [experienceFilter, setExperienceFilter] = useState([0, 20])

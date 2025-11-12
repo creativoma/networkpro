@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { useParams, useRouter } from 'next/navigation'
+import { toast } from 'sonner'
 import { Navbar } from '@/components/NavBar'
 import { Footer } from '@/components/Footer'
 import { Button } from '@/components/ui/button'
@@ -12,6 +13,8 @@ import { MapPin, Briefcase, DollarSign, Calendar, Heart, Send, ArrowLeft, Buildi
 import { Job } from '@/types'
 import { getJobById, addToFavorites, isFavorite } from '@/lib/api'
 import { useAuth } from '@/hooks/useAuth'
+import { getRelativeTime } from '@/lib/date-utils'
+import { copyToClipboard, getTwitterShareUrl, getLinkedInShareUrl } from '@/lib/share-utils'
 
 export default function JobDetailPage() {
   const params = useParams()
@@ -50,11 +53,11 @@ export default function JobDetailPage() {
       if (job && !isFavorited) {
         await addToFavorites(user.id, 'job', job.id)
         setIsFavorited(true)
-        alert('Added to favorites!')
+        toast.success('Added to favorites!')
       }
     } catch (error) {
       console.error('Error toggling favorite:', error)
-      alert('Failed to add to favorites')
+      toast.error('Failed to add to favorites')
     } finally {
       setActionLoading(false)
     }
@@ -66,21 +69,31 @@ export default function JobDetailPage() {
       return
     }
     // In a real app, this would open an application form or redirect to external application
-    alert('Application functionality would be implemented here!')
+    toast.info('Application functionality would be implemented here!')
   }
 
-  const formatDate = (dateString?: string) => {
-    if (!dateString) return 'Recently posted'
-    const date = new Date(dateString)
-    const now = new Date()
-    const diffTime = Math.abs(now.getTime() - date.getTime())
-    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24))
+  const handleShareTwitter = () => {
+    if (!job) return
+    const url = getTwitterShareUrl(
+      `Check out this job opportunity: ${job.title} at ${job.company}`,
+      window.location.href
+    )
+    window.open(url, '_blank', 'noopener,noreferrer')
+  }
 
-    if (diffDays === 0) return 'Posted today'
-    if (diffDays === 1) return 'Posted yesterday'
-    if (diffDays < 7) return `Posted ${diffDays} days ago`
-    if (diffDays < 30) return `Posted ${Math.floor(diffDays / 7)} weeks ago`
-    return `Posted ${Math.floor(diffDays / 30)} months ago`
+  const handleShareLinkedIn = () => {
+    if (!job) return
+    const url = getLinkedInShareUrl(window.location.href)
+    window.open(url, '_blank', 'noopener,noreferrer')
+  }
+
+  const handleCopyLink = async () => {
+    const success = await copyToClipboard(window.location.href)
+    if (success) {
+      toast.success('Link copied to clipboard!')
+    } else {
+      toast.error('Failed to copy link')
+    }
   }
 
   const getJobTypeColor = (type?: string) => {
@@ -154,7 +167,7 @@ export default function JobDetailPage() {
                 </div>
 
                 <h2 className="text-2xl font-bold mb-2">{job.company}</h2>
-                <p className="text-muted-foreground mb-4">{formatDate(job.posted_at)}</p>
+                <p className="text-muted-foreground mb-4">{job.posted_at ? getRelativeTime(job.posted_at) : 'Recently posted'}</p>
 
                 <div className="flex gap-2 mb-6">
                   <Button
@@ -227,9 +240,9 @@ export default function JobDetailPage() {
                 <div>
                   <p className="font-medium text-sm mb-3">Share This Job</p>
                   <div className="flex gap-2">
-                    <Button variant="outline" size="sm">LinkedIn</Button>
-                    <Button variant="outline" size="sm">Twitter</Button>
-                    <Button variant="outline" size="sm">Copy</Button>
+                    <Button variant="outline" size="sm" onClick={handleShareLinkedIn}>LinkedIn</Button>
+                    <Button variant="outline" size="sm" onClick={handleShareTwitter}>Twitter</Button>
+                    <Button variant="outline" size="sm" onClick={handleCopyLink}>Copy</Button>
                   </div>
                 </div>
               </CardContent>

@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { useParams, useRouter } from 'next/navigation'
+import { toast } from 'sonner'
 import { Navbar } from '@/components/NavBar'
 import { Footer } from '@/components/Footer'
 import { Button } from '@/components/ui/button'
@@ -42,11 +43,11 @@ export default function ProfessionalDetailPage() {
     try {
       if (professional?.user_id) {
         await sendConnectionRequest(user.id, professional.user_id)
-        alert('Connection request sent!')
+        toast.success('Connection request sent!')
       }
     } catch (error) {
       console.error('Error sending connection request:', error)
-      alert('Failed to send connection request')
+      toast.error('Failed to send connection request')
     } finally {
       setActionLoading(null)
     }
@@ -70,11 +71,11 @@ export default function ProfessionalDetailPage() {
     try {
       if (professional?.id) {
         await addToFavorites(user.id, 'professional', professional.id)
-        alert('Added to favorites!')
+        toast.success('Added to favorites!')
       }
     } catch (error) {
       console.error('Error adding to favorites:', error)
-      alert('Failed to add to favorites')
+      toast.error('Failed to add to favorites')
     } finally {
       setActionLoading(null)
     }

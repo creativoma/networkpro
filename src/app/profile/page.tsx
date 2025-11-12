@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
+import { toast } from 'sonner'
 import { Navbar } from '@/components/NavBar'
 import { Footer } from '@/components/Footer'
 import { Button } from '@/components/ui/button'
@@ -93,12 +94,12 @@ export default function ProfilePage() {
         })
       }
 
-      alert('Profile updated successfully!')
+      toast.success('Profile updated successfully!')
       const updated = await getUserProfile(user.id)
       setUserProfile(updated)
     } catch (error) {
       console.error('Error updating profile:', error)
-      alert('Failed to update profile')
+      toast.error('Failed to update profile')
     } finally {
       setSaving(false)
     }
