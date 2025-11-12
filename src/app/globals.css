@@ -29,6 +29,8 @@
     --chart-3: 197 37% 24%;
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
+    --gradient-start: 217 91% 60%;
+    --gradient-end: 271 81% 56%;
   }
 
   .dark {
@@ -56,6 +58,8 @@
     --chart-3: 30 80% 55%;
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
+    --gradient-start: 217 91% 50%;
+    --gradient-end: 271 81% 46%;
   }
 }
 
@@ -65,5 +69,11 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@layer utilities {
+  .bg-gradient-brand {
+    background: linear-gradient(to right, hsl(var(--gradient-start)), hsl(var(--gradient-end)));
   }
 }
