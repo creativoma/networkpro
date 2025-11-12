@@ -16,7 +16,7 @@ import { Footer } from '@/components/Footer'
 
 
 export default function Home() {
-  const [location, setLocation] = useState("Nueva York")
+  const [location, setLocation] = useState("San Francisco")
   const { theme, setTheme } = useTheme()
   const { professionals, loading: loadingProfessionals, error: professionalError } = useProfessionals()
   const { events, loading: loadingEvents, error: eventError } = useEvents()
@@ -93,7 +93,9 @@ export default function Home() {
                   <p className="text-sm text-gray-500 dark:text-gray-400">
                     Explore job listings and career opportunities in your industry.
                   </p>
-                  <Button variant="outline" className="mt-4">Coming Soon</Button>
+                  <Link href="/jobs" className="mt-4 inline-block">
+                    <Button variant="outline">Explore Jobs</Button>
+                  </Link>
                 </CardContent>
               </Card>
             </div>
